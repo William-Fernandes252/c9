@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "c9"
+version = "0.1.0"
+description = "A toy distributed file management system."
+authors = ["William Fernandes Dias <william.winchester1967@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "c9", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.0"
+mypy = "^1.10.1"
+tox = "^4.15.1"
+tox-gh-actions = "^3.2.0"
+watchfiles = "^0.22.0"
+
+[tool.poetry.scripts]
+c9 = "c9:c9"
+manager = "manager:main"
+buckets = "buckets:main"
+
+[tool.poetry.extras]
+dev = ["pytest", "mypy", "tox", "types-pyyaml", "watchfiles", "ruff"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+ignore_missing_imports = true
