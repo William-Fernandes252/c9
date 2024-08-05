@@ -49,7 +49,7 @@ class Command(ABC, Generic[Args]):
         status: Status = self.client.receive_chunk()
         content_type: ContentType = self.client.receive_chunk()
         data = None
-        if content_type != ContentType.NO_CONTENT:
+        if content_type != ContentType.NO_CONTENT.value:
             data = self.client.receive()
         return status, content_type, data
 
