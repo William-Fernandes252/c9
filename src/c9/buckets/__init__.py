@@ -4,7 +4,7 @@ import sys
 import threading
 from logging import Logger
 from pathlib import Path
-from socket import socket
+from socket import AF_INET, SOCK_STREAM, socket
 from typing import ClassVar, get_args
 from uuid import uuid4
 
@@ -66,7 +66,7 @@ class Bucket:
     def register(self):
         """Register the bucket in the subjects."""
         for host, port in self._subjects:
-            with Connection(socket()) as subject_connection:
+            with Connection(socket(AF_INET, SOCK_STREAM)) as subject_connection:
                 subject_connection.connect(host, port)
                 subject_connection.send(
                     f"register {self._id} {self._host} {self._port} {self._region} {self._path.resolve().as_posix()} {self.spec_message()}"
@@ -76,7 +76,7 @@ class Bucket:
     def try_update(self):
         """Try to update the bucket in the subject."""
         for host, port in self._subjects:
-            with Connection(socket()) as subject_connection:
+            with Connection(socket(AF_INET, SOCK_STREAM)) as subject_connection:
                 subject_connection.connect(host, port)
                 subject_connection.send(f"update {self._id} {self.spec_message()}")
                 self._logger.info(f"Updated in {host}:{port}")
@@ -84,7 +84,7 @@ class Bucket:
     def unregister(self):
         """Unregister the bucket from the subject."""
         for host, port in self._subjects:
-            with Connection(socket()) as subject_connection:
+            with Connection(socket(AF_INET, )) as subject_connection:
                 subject_connection.connect(host, port)
                 subject_connection.send(f"unregister {self._id}")
                 self._logger.info(f"Unregistered from {host}:{port}")
@@ -92,7 +92,7 @@ class Bucket:
     def run(self):
         """Run the bucket server."""
         self._logger.info(f"Server running on {self._host}:{self._port}")
-        with Connection(socket()) as client_connection:
+        with Connection(socket(AF_INET, SOCK_STREAM)) as client_connection:
             client_connection.listen(self._host, self._port)
 
             while True:

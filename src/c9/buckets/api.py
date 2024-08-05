@@ -59,7 +59,7 @@ class Client:
         self._spec: Spec | None = None
 
     def get(self, filename: str):
-        with Connection(socket()) as connection:
+        with Connection(socket(AF_INET, SOCK_STREAM)) as connection:
             connection.connect(self.host, self.port)
             connection.send(f"GET {filename}")
             print("Sent GET command")
@@ -78,7 +78,7 @@ class Client:
                 raise RuntimeError(error)
 
     def put(self, file: File):
-        with Connection(socket()) as connection:
+        with Connection(socket(AF_INET, SOCK_STREAM)) as connection:
             connection.connect(self.host, self.port)
             connection.send(f"PUT {file.name} {file.size}")
             time.sleep(1)
@@ -100,7 +100,7 @@ class Client:
         self._spec = value
 
     def __str__(self):
-        return f"Client({self.host}:{self.port}, {self._base_path})"
+        return f"Client({self.host}:{self.port}, {self._base_path}, {self.id}, {self.region})"
 
 
 class Observer(Protocol):

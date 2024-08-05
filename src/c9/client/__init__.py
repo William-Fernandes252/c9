@@ -1,4 +1,4 @@
-import socket
+from socket import AF_INET, SOCK_STREAM, socket
 
 import click
 
@@ -16,7 +16,7 @@ def c9():
 @click.argument("filename", type=str)
 def upload(path: str, filename: str):
     """Upload a file to the c9 cloud."""
-    with Connection(socket.socket()) as client:
+    with Connection(socket(AF_INET, SOCK_STREAM)) as client:
         client.socket.connect(("localhost", 8000))
         command = commands.UploadCommand(
             client, arguments=commands.UploadCommandArgs(path, filename)
@@ -32,7 +32,7 @@ def upload(path: str, filename: str):
 @click.argument("filename", type=click.Path(exists=False, writable=True))
 def download(filename: str):
     """Download a file from the c9 cloud."""
-    with Connection(socket.socket()) as client:
+    with Connection(socket(AF_INET, SOCK_STREAM)) as client:
         client.socket.connect(("localhost", 8000))
         command = commands.DownloadCommand(
             client, arguments=commands.DownloadCommandArgs(filename)
