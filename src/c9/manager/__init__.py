@@ -8,7 +8,6 @@ from typing import ClassVar
 from c9.buckets.api import Client as Bucket
 from c9.buckets.api import Region
 from c9.buckets.api import Spec as BucketSpec
-from c9.buckets.api import Subject
 from c9.buckets.api import Subject as BucketSubject
 from c9.lib.middleware import ENCODING, Connection
 from c9.manager.handlers import Handler, HandlerRegistry
@@ -100,7 +99,7 @@ def main():
         format="[%(asctime)s] %(levelname)s (%(name)s): %(message)s",
     )
 
-    subject = Subject("localhost", 3000, logging.getLogger("subject"))
+    subject = BucketSubject("localhost", 3000, logging.getLogger("subject"))
 
     thread = Thread(target=lambda: subject.listen())
     thread.start()
