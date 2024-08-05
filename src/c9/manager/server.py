@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import Final, Self
 
-from buckets.api import Client as Bucket
-from buckets.api import Region
-from lib.middleware import Connection, ContentType, Status
+from c9.buckets.api import Client as Bucket
+from c9.buckets.api import Region
+from c9.lib.middleware import Connection, ContentType, Status
 
 DISTANCE_MATRIX: Final[dict[Region, dict[Region, int]]] = {
     "us-east": {

@@ -5,14 +5,14 @@ from socket import AF_INET, SOCK_STREAM, socket
 from threading import Thread
 from typing import ClassVar
 
-from buckets.api import Client as Bucket
-from buckets.api import Region
-from buckets.api import Spec as BucketSpec
-from buckets.api import Subject
-from buckets.api import Subject as BucketSubject
-from lib.middleware import ENCODING, Connection
-from manager.handlers import Handler, HandlerRegistry
-from manager.server import Context
+from c9.buckets.api import Client as Bucket
+from c9.buckets.api import Region
+from c9.buckets.api import Spec as BucketSpec
+from c9.buckets.api import Subject
+from c9.buckets.api import Subject as BucketSubject
+from c9.lib.middleware import ENCODING, Connection
+from c9.manager.handlers import Handler, HandlerRegistry
+from c9.manager.server import Context
 
 
 class Manager:

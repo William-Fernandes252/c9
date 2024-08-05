@@ -19,9 +19,9 @@ tox-gh-actions = "^3.2.0"
 watchfiles = "^0.22.0"
 
 [tool.poetry.scripts]
-c9 = "c9:c9"
-manager = "manager:main"
-buckets = "buckets:main"
+c9 = "c9.client:c9"
+manager = "c9.manager:main"
+buckets = "c9.buckets:main"
 
 [tool.poetry.extras]
 dev = ["pytest", "mypy", "tox", "types-pyyaml", "watchfiles", "ruff"]

@@ -1,11 +1,10 @@
 from abc import ABC, ABCMeta, abstractmethod
 from typing import ClassVar
 
-from buckets.api import Client as Bucket
-from buckets.api import File, NotFoundError
-from lib.middleware import ENCODING, ContentType, Status
-
-from manager.server import DISTANCE_MATRIX, Context, Response
+from c9.buckets.api import Client as Bucket
+from c9.buckets.api import File, NotFoundError
+from c9.lib.middleware import ENCODING, ContentType, Status
+from c9.manager.server import DISTANCE_MATRIX, Context, Response
 
 
 class Handler(ABC):

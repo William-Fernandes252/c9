@@ -1,4 +1,4 @@
-from manager import main
+from c9.manager import main
 
 if __name__ == "__main__":
     main()

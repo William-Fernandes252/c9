@@ -6,7 +6,7 @@ from pathlib import Path
 from socket import AF_INET, SOCK_STREAM, socket
 from typing import Literal, Protocol, Self, TypedDict
 
-from lib.middleware import ENCODING, Connection
+from c9.lib.middleware import ENCODING, Connection
 
 
 class NotFoundError(Exception):

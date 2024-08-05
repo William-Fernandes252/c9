@@ -8,10 +8,9 @@ from socket import socket
 from typing import ClassVar, get_args
 from uuid import uuid4
 
-from lib.middleware import ENCODING, Connection
-
-from .api import Region, Spec, StatusCode
-from .utils import get_directory_size
+from c9.buckets.api import Region, Spec, StatusCode
+from c9.buckets.utils import get_directory_size
+from c9.lib.middleware import ENCODING, Connection
 
 
 class Bucket:

@@ -2,8 +2,8 @@ import socket
 
 import click
 
-from c9 import commands
-from lib.middleware import Connection
+from c9.client import commands
+from c9.lib.middleware import Connection
 
 
 @click.group()

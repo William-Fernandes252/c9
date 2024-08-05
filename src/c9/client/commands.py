@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Generic, NamedTuple, TypeVar
 
-from lib.middleware import Connection, ContentType, Status
+from c9.lib.middleware import Connection, ContentType, Status
 
 
 class Result(NamedTuple):
